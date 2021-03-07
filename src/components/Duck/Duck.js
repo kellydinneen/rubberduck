@@ -2,7 +2,7 @@ import React from 'react';
 // import { Link } from "react-router-dom";
 import './Duck.css';
 
-const Footer = (props) => {
+const Duck = (props) => {
   return (
     <svg className='duck'>
       <path fill="#F19C56" stroke-linecap="round" stroke-linejoin="round"
@@ -22,4 +22,4 @@ const Footer = (props) => {
   )
 }
 
-export default Footer;
+export default Duck;
