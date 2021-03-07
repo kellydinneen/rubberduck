@@ -1,0 +1,16 @@
+header {
+  display: flex;
+  justify-content: flex-start;
+  height: 7vh;
+  width: 100vw;
+  text-align: center;
+}
+
+.home-button {
+  margin-left: 2vw;
+  margin-top: 1vh;
+}
+
+.title {
+  margin-left: 2vw;
+}
