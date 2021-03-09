@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import fetchSolution from './dataRetrievalAndProcessing/apiRequests';
 import cleanData from './dataRetrievalAndProcessing/dataCleaning';
@@ -53,12 +54,12 @@ const Prescription = (props) => {
       <section className='prescription-card'>
         <h4>Well, I think what you need to try is</h4>
         <h3 className='title'>{prescription.title}</h3>
-        <h3 className='content'>{prescription.content}</h3>
+        <h4 className='content'>{prescription.content}</h4>
         <Link className='resource-link' to={prescription.resource}>
-          <button>Learn More</button>
+          <button className='pres-button'>Learn More</button>
         </Link>
         <Link className='start-over' to='/form'>
-          <button>Start Over</button>
+          <button className='pres-button'>Start Over</button>
         </Link>
       </section>
     }
@@ -67,7 +68,7 @@ const Prescription = (props) => {
 }
 
 Prescription.propTypes = {
-  prop: PropTypes.string;
+  prop: PropTypes.string
 };
 
 export default Prescription;

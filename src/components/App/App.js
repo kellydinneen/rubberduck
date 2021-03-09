@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Switch, Route } from "react-router-dom";
 import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import Home from '../Home/Home';
 import Form from '../Form/Form';
 import Prescription from '../Prescription/Prescription';
-import About from '../About/About';
 import ErrorPage from '../ErrorPage/ErrorPage'
 import './App.css';
 
@@ -21,7 +19,6 @@ const App = () => {
               <>
                 <Header home={true}/>
                 <Home />
-                <Footer />
               </>
             )}
           />
@@ -30,8 +27,9 @@ const App = () => {
             render={() => (
               <>
                 <Header home={false} />
+                <main>
                 <Form />
-                <Footer />
+                </main>
               </>
             )}
             exact
@@ -41,19 +39,9 @@ const App = () => {
             render={({match}) => (
               <>
                 <Header home={false} />
+                <main>
                 <Prescription type={match.params.type} />
-                <Footer />
-              </>
-            )}
-            exact
-          />
-          <Route
-            path="/about"
-            render={() => (
-              <>
-                <Header home={false} />
-                <About />
-                <Footer />
+                </main>
               </>
             )}
             exact

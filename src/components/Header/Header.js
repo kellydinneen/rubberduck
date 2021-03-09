@@ -5,11 +5,11 @@ import './Header.css';
 const Header = (props) => {
   return (
     <header>
-      {props.home && <h1 className='title'>Rubberduck</h1>}
+      {props.home && <h1 className='site-title'>Rubberduck</h1>}
       {!props.home &&
         <>
-          <Link className='home-button' to='/'>
-            Home
+          <Link to='/'>
+            <button className='home-button'>Go Home</button>
           </Link>
         </>
       }

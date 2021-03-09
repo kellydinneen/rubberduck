@@ -7,10 +7,12 @@ const Home = () => {
 
   return (
     <main>
+      <div className='can-i-be-yours-div'>
       <h2>Hello, can I be your rubberduck?</h2>
       <Link to='/form'>
         <button className='yes-button'>Yes</button>
       </Link>
+      </div>
       <Duck />
     </main>
   )
