@@ -7,6 +7,7 @@
 
 ### Instructors: 
 **Leta Keana** : [github profile](https://github.com/letakeane)
+
 **Scott Ertmer** : [github profile](https://github.com/sertmer)
 
 ### Technologies
