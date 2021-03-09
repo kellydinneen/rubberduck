@@ -1,16 +1,23 @@
 header {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   height: 7vh;
   width: 100vw;
   text-align: center;
 }
 
 .home-button {
-  margin-left: 2vw;
   margin-top: 1vh;
+  border-radius: 50%;
+  background: #56B3F1;
+  font-family: Menlo;
+  font-weight: bolder;
+  border: solid black;
+  height: 50px;
+  cursor: pointer;
 }
 
-.title {
-  margin-left: 2vw;
+.site-title {
+  font-family: Menlo;
+  color: yellow;
 }
