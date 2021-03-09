@@ -25,7 +25,7 @@
 8. [Future Plans](#plans-for-future-iterations)
 
 ## Introduction
-The duck in this app will be your rubberduck when you don't have friends around. The duck evaluates a user's survey results to prescribe a personalized affirmation from the [Affirmations API](https://github.com/annthurium/affirmations), a piece of advice from the [Advice Slip API](https://api.adviceslip.com/), or an R&R or problem solving strategy from the [unstuck API] (which was built specifically for the Rubberduck app).
+The duck in this app will be your rubberduck when you don't have friends around. The duck evaluates a user's survey results to prescribe a personalized affirmation from the [Affirmations API](https://github.com/annthurium/affirmations), a piece of advice from the [Advice Slip API](https://api.adviceslip.com/), or an R&R or problem solving strategy from the [unstuck API](https://github.com/kellydinneen/unstuck-api) (which was built specifically for the Rubberduck app).
 
 ## Setup Instructions
 To run the project locally:
