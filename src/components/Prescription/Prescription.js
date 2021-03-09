@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import './Prescription.css';
 
 const Prescription = (props) => {
-  console.log(props.location. props.location.state);
+  console.log(props.type);
   const [loading, setLoading] = useState(true);
 
   return (

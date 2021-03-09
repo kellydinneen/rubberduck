@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import MultiSelect from "react-multi-select-component";
 import determinePrescriptionType from './formResponseProcessing';
 import Duck from '../Duck/Duck';
 import './Form.css';
@@ -18,7 +19,7 @@ const Form = (props) => {
   const [currentTime, setCurrentTime] = useState('');
   const [breakTime, setBreakTime] = useState('');
   const [eatTime, setEatTime] = useState('');
-  const [selfDescription, setSelfDescription] = useState('');
+  const [selfDescription, setSelfDescription] = useState([]);
   const [feeling, setFeeling] = useState('');
 
   const getPrescriptionType = () => {
@@ -35,6 +36,7 @@ const Form = (props) => {
       feeling: feeling
     }
     setPrescriptionType(determinePrescriptionType(inputs));
+    console.log('TYPE', prescriptionType);
   }
 
   return (
@@ -54,6 +56,7 @@ const Form = (props) => {
         {currentQuestion === 2 && <label>
         How would you describe the trouble you're having {name}, duck-friend?
           <select value={problemType} onChange={event => setProblemType(event.target.value)}>
+            <option value="" disabled selected>Select a category</option>
             <option value="big bad bug">it's a big bad bug 🐛</option>
             <option value="don't know how to start">I just don't know how to start</option>
             <option value="concept confusion">I don't understand a concept I'm working with</option>
@@ -63,6 +66,7 @@ const Form = (props) => {
         {currentQuestion === 3 && <label>
         Which of these categories is your problem related to?
           <select value={techType} onChange={event => setTechType(event.target.value)}>
+            <option value="" disabled selected>Select a category</option>
             <option value="styling">making things look pretty (css/scss stuff)</option>
             <option value="client-side">client side architecture</option>
             <option value="backend">backend architecture</option>
@@ -103,6 +107,7 @@ const Form = (props) => {
           <label>
             How long has it been since you saw any progress?
             <select value={progressTime} onChange={event => setProgressTime(event.target.value)}>
+              <option value="" disabled selected>Select time window</option>
               <option value="minutes">an hour or less</option>
               <option value="hours">several hours</option>
               <option value="yesterday">yesterday</option>
@@ -115,7 +120,8 @@ const Form = (props) => {
           <h3>Ok, let's get you some progress. Just a few more questions for context.</h3>
           <label>
             About what time is it where you are?
-            <select value={currentTime} onChange={event => currentTime(event.target.value)}>
+            <select value={currentTime} onChange={event => setCurrentTime(event.target.value)}>
+              <option value="" disabled selected>Select the closest match</option>
               <option value="early">early morning</option>
               <option value="morning">mid-morning</option>
               <option value="afternoon">early afternoon</option>
@@ -129,6 +135,7 @@ const Form = (props) => {
           <label>
             When was the last time you took a break longer than 5 minutes?
             <select value={breakTime} onChange={event => setBreakTime(event.target.value)}>
+              <option value="" disabled selected>Select the closest match</option>
               <option value="minutes">an hour or less</option>
               <option value="hours">several hours</option>
               <option value="yesterday">yesterday</option>
@@ -137,14 +144,16 @@ const Form = (props) => {
           <label>
             When was the last time you ate?
             <select value={eatTime} onChange={event => setEatTime(event.target.value)}>
+              <option value="" disabled selected>Select the closest match</option>
               <option value="minutes">an hour or less</option>
               <option value="hours">several hours</option>
               <option value="yesterday">yesterday</option>
             </select>
           </label>
           <label>
-            Which of these best describe you, typically? (Select all that apply)
+            Which of these best describe you, typically?
             <select value={selfDescription} onChange={event => setSelfDescription(event.target.value)} multiple>
+              <option value="" disabled selected>Select all that apply</option>
               <option value="procrastinator">procrastinator</option>
               <option value="perfectionist">perfectionist</option>
               <option value="adventurous">adventurous</option>
@@ -173,6 +182,7 @@ const Form = (props) => {
               setFeeling(event.target.value)
               getPrescriptionType();
             }}>
+              <option value="" disabled selected>Select the closest match</option>
               <option value='0'>hopeless</option>
               <option value='1'>incredibly frustrated</option>
               <option value='2'>sort of frustrated</option>
@@ -185,9 +195,8 @@ const Form = (props) => {
         onClick={() => setCurrentQuestion(currentQuestion - 1)}>Back</button>}
         {currentQuestion < 7 && <button type='button' className='forward-button' onClick={() => setCurrentQuestion(currentQuestion + 1)}>Next</button>}
         {currentQuestion === 7 && <Link to={{
-          pathname:`/advice`,
-          state: {prescriptionType}
-        }}>
+            pathname:`/advice/${prescriptionType}`
+          }}>
           <button className='submit-button' type='button' onClick={() => setCurrentQuestion(1)}>Submit</button>
         </Link>}
       </form>

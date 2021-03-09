@@ -1,6 +1,8 @@
 const determinePrescriptionType = (inputs) => {
   const user = categorizeUser(inputs);
+  console.log('USER', user);
   const problem = categorizeProblem(inputs);
+  console.log('PROBLEM', problem);
   if (user.energy === 'very tired') {
     return 'rr/rest'
   } else if (user.energy === 'hungry') {

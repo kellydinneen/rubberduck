@@ -37,11 +37,11 @@ const App = () => {
             exact
           />
           <Route
-            path="/advice"
-            render={() => (
+            path="/advice/:type"
+            render={({match}) => (
               <>
                 <Header home={false} />
-                <Prescription />
+                <Prescription type={match.params.type} />
                 <Footer />
               </>
             )}
