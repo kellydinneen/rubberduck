@@ -4,11 +4,11 @@ const determinePrescriptionType = (inputs) => {
   const problem = categorizeProblem(inputs);
   console.log('PROBLEM', problem);
   if (user.energy === 'very tired') {
-    return 'rr/rest'
+    return 'rest'
   } else if (user.energy === 'hungry') {
-    return 'rr/nourishment'
+    return 'nourishment'
   } else if (user.energy === "stale") {
-    return 'rr/movement';
+    return 'movement';
   } else if ((problem === 'vague' && user.valence === 'down') || problem === 'impossible') {
     return 'affirmation';
   } else if (problem === 'vague' && user.valence === 'up') {
@@ -18,11 +18,11 @@ const determinePrescriptionType = (inputs) => {
     (problem === 'ideas' && user.valence === 'up' && user.relevantTraits.includes('over-cautious')) ||
     (problem === 'architecture' && user.valence === 'up' && user.relevantTraits.includes('imaginative'))
   ) {
-    return 'thinking/oblique';
+    return 'oblique';
   } else if (problem === 'ideas') {
-    return 'thinking/ideation';
+    return 'ideation';
   } else if (problem !== 'vague' || user.valence === 'down') {
-    return 'thinking/science';
+    return 'science';
   } else {
     return 'affirmation';
   }
