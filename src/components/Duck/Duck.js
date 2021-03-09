@@ -4,7 +4,7 @@ import './Duck.css';
 
 const Duck = () => {
   return (
-    <svg className='duck'>
+    <svg className='duck' viewBox='0 0 200 150'>
       <path fill="#F19C56" strokeLinecap="round" strokeLinejoin="round"
             stroke="#F19C56" strokeWidth="20"
             d="M35 30 l20 0 Z" />
