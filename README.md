@@ -37,7 +37,7 @@ To run the project locally:
 OR
 
 We have deployed the App using Heroku. To visit, click the link below!
-- [Rubberduck]()
+- [Rubberduck](https://rubberduck-m3.herokuapp.com/)
 
 *note: the unstuck API is deployed on Heroku, so there is no need to clone it down
 
@@ -71,6 +71,8 @@ The duck asks users number of questions about the problem you are facing, your w
 ### Viewing the Prescription
 Upon clicking submit, a user will be shown a recommendation from the duck, consisting of a title, a description, and a resource link.
 
+### Submitting Problem Solving Strategies
+Users can also submit their own strategies or review by clicking the "Submit A Strategy" button in the header. They are asked to enter a title, a description, and a link before clicking submit.
 
 [Back to Top of Page](#table-of-contents)
 
