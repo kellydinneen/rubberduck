@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import fetchSolution from './dataRetrievalAndProcessing/apiRequests';
 import cleanData from './dataRetrievalAndProcessing/dataCleaning';
@@ -67,7 +68,7 @@ const Prescription = (props) => {
 }
 
 Prescription.propTypes = {
-  prop: PropTypes.string;
+  prop: PropTypes.string
 };
 
 export default Prescription;
