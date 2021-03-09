@@ -1,4 +1,4 @@
-export const cleanData = (data, source) => {
+const cleanData = (data, source) => {
   if (source === 'unstuck') {
     return approveSolutionContent(data);
   } else if (source === 'affirmations') {
@@ -9,11 +9,11 @@ export const cleanData = (data, source) => {
 }
 
 const approveSolutionContent = (solutionData) => {
-  if (solutionData.name && solutionData.content) {
+  if (solutionData.selection.name && solutionData.selection.content) {
     return {
-      title: solutionData.name,
-      content: solutionData.content,
-      resource: solutionData.resource
+      title: solutionData.selection.name,
+      content: solutionData.selection.content,
+      resource: solutionData.selection.resource
     }
   } else {
     return "bad data";
@@ -43,3 +43,5 @@ const approveAdviceContent = (advData) => {
     return "bad data";
   }
 }
+
+export default cleanData;
