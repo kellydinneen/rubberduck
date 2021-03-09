@@ -7,6 +7,7 @@ import './Form.css';
 
 const Form = (props) => {
   const [currentQuestion, setCurrentQuestion] = useState(1);
+  const [incomplete, setIncomplete] = useState(true);
   const [userInputs, setUserInputs] = useState({});
   const [prescriptionType, setPrescriptionType] = useState('');
   const [name, setName] = useState('');
@@ -26,7 +27,25 @@ const Form = (props) => {
   const getPrescriptionType = async () => {
     const type = await determinePrescriptionType(userInputs);
     setPrescriptionType(type);
-    console.log('TYPE', prescriptionType)
+  }
+
+  const testForCompleteness = () => {
+    if (
+      name &&
+      problemType &&
+      techType &&
+      issueAge &&
+      issueHours &&
+      progressTime &&
+      currentTime &&
+      breakTime &&
+      eatTime &&
+      selfDescription &&
+      feeling
+    ) {
+      setIncomplete(false);
+      getPrescriptionType();
+    }
   }
 
   const selfDescriptorOptions = [
@@ -98,7 +117,7 @@ const Form = (props) => {
            <textarea value={ventTwo} onChange={event => setVentTwo(event.target.value)} />
         </label>}
         {currentQuestion === 6 && <>
-          <h3>I hope that helped you mull over your problem productively. Now answer just a few more questions for me.</h3>
+          <h4 className='commentary'>I hope that helped you mull over your problem productively. Now answer just a few more questions for me.</h4>
           <label>
             How many days have you had this issue?
             <input
@@ -119,20 +138,20 @@ const Form = (props) => {
               onChange={event => setIssueHours(event.target.value)}>
             </input>
           </label>
-          <label>
-            How long has it been since you saw any progress?
-            <select className="progress-time-input" value={progressTime} onChange={event => setProgressTime(event.target.value)}>
-              <option value="" disabled selected>Select time window</option>
-              <option value="minutes">an hour or less</option>
-              <option value="hours">several hours</option>
-              <option value="yesterday">yesterday</option>
-              <option value="days">days ago</option>
-              <option value="never">I've never seen progress</option>
-            </select>
-          </label>
         </>}
-        {currentQuestion === 7 && <>
-          <h3>Ok, let's get you some progress. Just a few more questions for context.</h3>
+        {currentQuestion === 7 && <label>
+          How long has it been since you saw any progress?
+          <select className="progress-time-input" value={progressTime} onChange={event => setProgressTime(event.target.value)}>
+            <option value="" disabled selected>Select time window</option>
+            <option value="minutes">an hour or less</option>
+            <option value="hours">several hours</option>
+            <option value="yesterday">yesterday</option>
+            <option value="days">days ago</option>
+            <option value="never">I've never seen progress</option>
+          </select>
+        </label>}
+        {currentQuestion === 8 && <>
+          <h4 className='commentary'>Ok {name}, let's get you some progress. Just a few more questions for context.</h4>
           <label>
             About what time is it where you are?
             <select className="current-time-input" value={currentTime} onChange={event => setCurrentTime(event.target.value)}>
@@ -165,56 +184,58 @@ const Form = (props) => {
               <option value="yesterday">yesterday</option>
             </select>
           </label>
-          <label>
-          How would you describe yourself?
-            <MultiSelect
-              options={selfDescriptorOptions}
-              value={selfDescription}
-              onChange={setSelfDescription}
-              labelledBy={"Select all that apply"}
-              className="multi"
-            />
-          </label>
-          <label>
-            How do you feel right now?
-            <select className="feeling-input" value={feeling} onChange={event => {
-              setFeeling(event.target.value)
-              setUserInputs(
-                {
-                  problemType: problemType,
-                  techType: techType,
-                  issueAge: issueAge,
-                  issueHours: issueHours,
-                  progressTime: progressTime,
-                  currentTime: currentTime,
-                  breakTime: breakTime,
-                  eatTime: eatTime,
-                  selfDescription: selfDescription,
-                  feeling: feeling
-                }
-              );
-            }}>
-              <option value="" disabled selected>Select the closest match</option>
-              <option value='0'>hopeless</option>
-              <option value='1'>incredibly frustrated</option>
-              <option value='2'>sort of frustrated</option>
-              <option value='3'>ok</option>
-              <option value='4'>I'm having fun</option>
-            </select>
-          </label>
         </>}
+        {currentQuestion === 9 && <>
+          <label>
+        How would you describe yourself?
+          <MultiSelect
+            options={selfDescriptorOptions}
+            value={selfDescription}
+            onChange={setSelfDescription}
+            labelledBy={"Select all that apply"}
+            className="multi"
+          />
+        </label>
+        <label>
+          How do you feel right now?
+          <select className="feeling-input" value={feeling} onChange={event => {
+            setFeeling(event.target.value)
+            setUserInputs(
+              {
+                problemType: problemType,
+                techType: techType,
+                issueAge: issueAge,
+                issueHours: issueHours,
+                progressTime: progressTime,
+                currentTime: currentTime,
+                breakTime: breakTime,
+                eatTime: eatTime,
+                selfDescription: selfDescription,
+                feeling: feeling
+              }
+            );
+          }}>
+            <option value="" disabled selected>Select the closest match</option>
+            <option value='0'>hopeless</option>
+            <option value='1'>incredibly frustrated</option>
+            <option value='2'>sort of frustrated</option>
+            <option value='3'>ok</option>
+            <option value='4'>I'm having fun</option>
+          </select>
+        </label>
+      </>}
         {currentQuestion > 1 && <button type='button' className='back-button'
         onClick={() => setCurrentQuestion(currentQuestion - 1)}>Back</button>}
-        {currentQuestion < 7 && <button type='button' className='forward-button' onClick={() => setCurrentQuestion(currentQuestion + 1)}>Next</button>}
-        {currentQuestion === 7 &&
+        {currentQuestion < 9 && <button type='button' className='forward-button' onClick={() => setCurrentQuestion(currentQuestion + 1)}>Next</button>}
+        {currentQuestion === 9 &&
           <button onClick={() => {
-            setCurrentQuestion(8);
-            getPrescriptionType();
+            setCurrentQuestion(10);
+            testForCompleteness();
           }} className='penult-button' type='button'>What's Next?!</button>
         }
-        {currentQuestion === 8 &&
+        {!incomplete && currentQuestion === 10 &&
           <>
-          <h3>You're done!</h3>
+          <h4 className='commentary'>You're done!</h4>
           <Link onClick={() => {
             setCurrentQuestion(1);
             getPrescriptionType();
@@ -225,6 +246,9 @@ const Form = (props) => {
           <button className='submit-button' type='button'>Submit</button>
         </Link>
         </>
+      }
+      {incomplete && currentQuestion === 10 &&
+        <h4 className='commentary'>You're not quite done! Please go back and answer any unanswered questions</h4>
       }
       </form>
     </>
