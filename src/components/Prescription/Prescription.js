@@ -7,7 +7,6 @@ import Duck from '../Duck/Duck';
 import './Prescription.css';
 
 const Prescription = (props) => {
-  console.log(props.type);
   const [prescription, setPrescription] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -16,9 +15,7 @@ const Prescription = (props) => {
     try {
       const promise = await fetchSolution(endpoint);
       const data = await promise.json();
-      console.log(data);
       const processedData = cleanData(data, source)
-      console.log(processedData);
       setPrescription(processedData);
       setLoading(false);
     } catch (err) {
@@ -68,7 +65,7 @@ const Prescription = (props) => {
 }
 
 Prescription.propTypes = {
-  prop: PropTypes.string
+  type: PropTypes.string
 };
 
 export default Prescription;

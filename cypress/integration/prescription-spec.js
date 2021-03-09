@@ -16,8 +16,6 @@ describe('Unstuck Prescription', () => {
     cy.get('.yes-button').click()
     cy.get('form').find('.name-input').type('cypress')
     cy.get('form').find('.forward-button').as('next').click()
-    cy.get('form').find('.name-input').type('cypress')
-    cy.get('@next').click()
     cy.get('form').find('.problem-type-select').select("big bad bug")
     cy.get('@next').click()
     cy.get('form').find('.tech-type-select').select('everything')
@@ -25,21 +23,16 @@ describe('Unstuck Prescription', () => {
     cy.get('@next').click()
     cy.get('@next').click()
     cy.get('form').find('.days-input').type('1')
-    cy.get('@next').click()
     cy.get('form').find('.hours-input').type('1')
     cy.get('@next').click()
     cy.get('form').find('.progress-time-input').select('hours')
     cy.get('@next').click()
     cy.get('form').find('.current-time-input').select('11')
-    cy.get('@next').click()
     cy.get('form').find('.break-input').select('yesterday')
-    cy.get('@next').click()
     cy.get('form').find('.eat-input').select('minutes')
     cy.get('@next').click()
-    cy.get('form').find('.multi').select('adventurous')
-    cy.get('@next').click()
+    cy.get('form').find('.multi')
     cy.get('form').find('.feeling-input').select('1')
-    cy.get('@next').click()
     cy.get('form').find('.penult-button').click()
     cy.get('form').find('.submit-button').click().wait(2000)
   });
@@ -49,8 +42,8 @@ describe('Unstuck Prescription', () => {
   })
 
   it('Should display the prescription', () => {
-    cy.get('.prescription-card'').find('.title').contains('some Oblique R&R')
-    cy.get('.prescription-card'').find('.content').contains('Do nothing for as long as possible.')
+    cy.get('.prescription-card').find('.title').contains('some Oblique R&R')
+    cy.get('.prescription-card').find('.content').contains('Do nothing for as long as possible.')
   })
 
   it('Should link to prescription resource', () => {
@@ -75,50 +68,43 @@ describe('Affirmation Prescription', () => {
       body: {
         affirmation: "you're amazing"
         }
-      }
     })
     cy.visit('http://localhost:3000');
     cy.get('.yes-button').click()
     cy.get('form').find('.name-input').type('cypress')
     cy.get('form').find('.forward-button').as('next').click()
-    cy.get('form').find('.name-input').type('cypress')
-    cy.get('@next').click()
     cy.get('form').find('.problem-type-select').select("big bad bug")
     cy.get('@next').click()
     cy.get('form').find('.tech-type-select').select('everything')
     cy.get('@next').click()
     cy.get('@next').click()
     cy.get('@next').click()
-    cy.get('form').find('.days-input').type('10')
-    cy.get('@next').click()
+    cy.get('form').find('.days-input').type('20')
     cy.get('form').find('.hours-input').type('1')
     cy.get('@next').click()
     cy.get('form').find('.progress-time-input').select('never')
     cy.get('@next').click()
-    cy.get('form').find('.current-time-input').select('11')
-    cy.get('@next').click()
-    cy.get('form').find('.break-input').select('yesterday')
-    cy.get('@next').click()
+    cy.get('form').find('.current-time-input').select('morning')
+    cy.get('form').find('.break-input').select('minutes')
     cy.get('form').find('.eat-input').select('minutes')
     cy.get('@next').click()
-    cy.get('form').find('.multi').select('adventurous')
-    cy.get('@next').click()
-    cy.get('form').find('.feeling-input').select('1')
-    cy.get('@next').click()
+    cy.get('form').find('.multi')
+    cy.get('form').find('.feeling-input').select('4')
     cy.get('form').find('.penult-button').click()
-    cy.get('form').find('.submit-button').click().wait(2000)
+    cy.get('form').find('.submit-button').click().wait(4000)
   });
 
   it('Should display the prescription', () => {
-    cy.get('.prescription-card'').find('.title').contains('a little love')
-    cy.get('.prescription-card'').find('.content').contains("you're amazing")
+    cy.get('.prescription-card').find('.title').contains('a little love')
+    cy.get('.prescription-card').find('.content').contains("you're amazing")
   })
 });
 
 describe('Advice Prescription', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'some general advice', {
-      slip: {
+    cy.intercept('GET', 'https://api.adviceslip.com/advice', {
+      body: {
+        slip: {
         advice: "just do it"
         }
       }
@@ -127,8 +113,6 @@ describe('Advice Prescription', () => {
     cy.get('.yes-button').click()
     cy.get('form').find('.name-input').type('cypress')
     cy.get('form').find('.forward-button').as('next').click()
-    cy.get('form').find('.name-input').type('cypress')
-    cy.get('@next').click()
     cy.get('form').find('.problem-type-select').select("big bad bug")
     cy.get('@next').click()
     cy.get('form').find('.tech-type-select').select('everything')
@@ -136,27 +120,22 @@ describe('Advice Prescription', () => {
     cy.get('@next').click()
     cy.get('@next').click()
     cy.get('form').find('.days-input').type('10')
-    cy.get('@next').click()
     cy.get('form').find('.hours-input').type('1')
     cy.get('@next').click()
     cy.get('form').find('.progress-time-input').select('never')
     cy.get('@next').click()
     cy.get('form').find('.current-time-input').select('11')
-    cy.get('@next').click()
     cy.get('form').find('.break-input').select('yesterday')
-    cy.get('@next').click()
     cy.get('form').find('.eat-input').select('minutes')
     cy.get('@next').click()
-    cy.get('form').find('.multi').select('adventurous')
-    cy.get('@next').click()
+    cy.get('form').find('.multi')
     cy.get('form').find('.feeling-input').select('4')
-    cy.get('@next').click()
     cy.get('form').find('.penult-button').click()
     cy.get('form').find('.submit-button').click().wait(2000)
   });
 
   it('Should display the prescription', () => {
-    cy.get('.prescription-card'').find('.title').contains('some general advice')
-    cy.get('.prescription-card'').find('.content').contains('just do it')
+    cy.get('.prescription-card').find('.title').contains('some general advice')
+    cy.get('.prescription-card').find('.content').contains('just do it')
   })
 });

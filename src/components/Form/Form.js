@@ -21,13 +21,30 @@ const Form = (props) => {
   const [currentTime, setCurrentTime] = useState('');
   const [breakTime, setBreakTime] = useState('');
   const [eatTime, setEatTime] = useState('');
-  const [selfDescription, setSelfDescription] = useState([]);
+  const [selfDescription, setSelfDescription] = useState(['filler']);
   const [feeling, setFeeling] = useState('');
 
   const getPrescriptionType = async () => {
     const type = await determinePrescriptionType(userInputs);
     setPrescriptionType(type);
   }
+
+  const setInputs = () => {
+    setUserInputs(
+      {
+        problemType: problemType,
+        techType: techType,
+        issueAge: issueAge,
+        issueHours: issueHours,
+        progressTime: progressTime,
+        currentTime: currentTime,
+        breakTime: breakTime,
+        eatTime: eatTime,
+        selfDescription: selfDescription,
+        feeling: feeling
+      }
+    )
+  };
 
   const testForCompleteness = () => {
     if (
@@ -200,20 +217,7 @@ const Form = (props) => {
           How do you feel right now?
           <select className="feeling-input" value={feeling} onChange={event => {
             setFeeling(event.target.value)
-            setUserInputs(
-              {
-                problemType: problemType,
-                techType: techType,
-                issueAge: issueAge,
-                issueHours: issueHours,
-                progressTime: progressTime,
-                currentTime: currentTime,
-                breakTime: breakTime,
-                eatTime: eatTime,
-                selfDescription: selfDescription,
-                feeling: feeling
-              }
-            );
+            setInputs();
           }}>
             <option value="" disabled selected>Select the closest match</option>
             <option value='0'>hopeless</option>
