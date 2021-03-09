@@ -1,11 +1,13 @@
 header {
   display: flex;
   justify-content: center;
-  height: 7vh;
+  align-items: center;
+  height: 12vh;
   width: 100vw;
   text-align: center;
 }
 
+.submissions-button,
 .home-button {
   margin-top: 1vh;
   border-radius: 50%;
@@ -15,6 +17,10 @@ header {
   border: solid black;
   height: 50px;
   cursor: pointer;
+}
+
+.submissions-button {
+  margin-left: 20px;
 }
 
 .site-title {
