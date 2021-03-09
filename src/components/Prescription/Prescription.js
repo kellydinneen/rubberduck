@@ -66,4 +66,8 @@ const Prescription = (props) => {
   )
 }
 
+Prescription.propTypes = {
+  prop: PropTypes.string;
+};
+
 export default Prescription;
