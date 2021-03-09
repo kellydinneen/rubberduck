@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import determinePrescriptionType from './formResponseProcessing.css';
 import './Form.css';
 
 const Form = (props) => {
   const [currentQuestion, setCurrentQuestion] = useState(1);
+  const [prescriptionType, setPrescriptionType] = useState('');
   const [name, setName] = useState('');
   const [problemType, setProblemType] = useState('');
   const [techType, setTechType] = useState('');
@@ -17,6 +19,22 @@ const Form = (props) => {
   const [eatTime, setEatTime] = useState('');
   const [selfDescription, setSelfDescription] = useState('');
   const [feeling, setFeeling] = useState('');
+
+  useEffect(() => {
+    const inputs === {
+      problemType: problemType,
+      techType: techType,
+      issueAge: issueAge,
+      issueHours: issueHours,
+      progressTime: progressTime,
+      currentTime: currentTime,
+      breakTime: breakTime,
+      eatTime: eatTime,
+      selfDescription: selfDescription,
+      feeling: feeling
+    }
+    setPrescriptionType(determinePrescriptionType(inputs));
+  }, [feeling])
 
   return (
     <form>
@@ -159,7 +177,10 @@ const Form = (props) => {
       </>}
       {currentQuestion > 1 && <button className='back-button' onClick={setCurrentQuestion(currentQuestion--)}>Back</button>}
       {currentQuestion < 7 && <button className='forward-button' onClick={setCurrentQuestion(currentQuestion++)}>Next</button>}
-      {currentQuestion === 7 && <Link>
+      {currentQuestion === 7 && <Link to={{
+        pathname:`/advice`,
+        state: {prescriptionType}
+      }}>
         <button className='submit-button' onClick={setCurrentQuestion(1)}>Submit</button>
       </Link>}
     </form>
