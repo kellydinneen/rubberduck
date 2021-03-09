@@ -9,6 +9,14 @@ const Form = (props) => {
   const [techType, setTechType] = useState('');
   const [vent, setVent] = useState('');
   const [ventTwo, setVentTwo] = useState('');
+  const [issueAge, setIssueAge] = useState('');
+  const [issueHours, setIssueHours] = useState('');
+  const [progressTime, setProgressTime] = useState('');
+  const [currentTime, setCurrentTime] = useState('');
+  const [breakTime, setBreakTime] = useState('');
+  const [eatTime, setEatTime] = useState('');
+  const [selfDescription, setSelfDescription] = useState('');
+  const [feeling, setFeeling] = useState('');
 
   return (
     <form>
@@ -141,17 +149,19 @@ const Form = (props) => {
         <label>
           How do you feel right now?
           <select value={feeling} onChange={event => setFeeling(event.target.value)}>
-            <option value=0>hopeless</option>
-            <option value=1>incredibly frustrated</option>
-            <option value=2>sort of frustrated</option>
-            <option value=3>ok</option>
-            <option value=4>I'm having fun</option>
+            <option value='0'>hopeless</option>
+            <option value='1'>incredibly frustrated</option>
+            <option value='2'>sort of frustrated</option>
+            <option value='3'>ok</option>
+            <option value='4'>I'm having fun</option>
           </select>
         </label>
       </>}
       {currentQuestion > 1 && <button className='back-button' onClick={setCurrentQuestion(currentQuestion--)}>Back</button>}
-      <button className='forward-button' onClick={setCurrentQuestion(currentQuestion++)}>Next</button>
-      <button className='forward-button' onClick={setCurrentQuestion(currentQuestion++)}>Submit</button>
+      {currentQuestion < 7 && <button className='forward-button' onClick={setCurrentQuestion(currentQuestion++)}>Next</button>}
+      {currentQuestion === 7 && <Link>
+        <button className='submit-button' onClick={setCurrentQuestion(1)}>Submit</button>
+      </Link>}
     </form>
   )
 }

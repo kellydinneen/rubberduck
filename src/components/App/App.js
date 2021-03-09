@@ -6,7 +6,6 @@ import Home from '../Home/Home';
 import Form from '../Form/Form';
 import Prescription from '../Prescription/Prescription';
 import About from '../About/About';
-import SolutionIndex from '../SolutionIndex/SolutionIndex';
 import ErrorPage from '../ErrorPage/ErrorPage'
 import './App.css';
 
@@ -27,7 +26,7 @@ const App = () => {
             )}
           />
           <Route
-            path="/form/:user"
+            path="/form"
             render={() => (
               <>
                 <Header home={false} />
@@ -38,7 +37,7 @@ const App = () => {
             exact
           />
           <Route
-            path="/advice/:user"
+            path="/advice"
             render={() => (
               <>
                 <Header home={false} />
@@ -54,17 +53,6 @@ const App = () => {
               <>
                 <Header home={false} />
                 <About />
-                <Footer />
-              </>
-            )}
-            exact
-          />
-          <Route
-            path="/solution-index"
-            render={() => (
-              <>
-                <Header home={false} />
-                <SolutionIndex />
                 <Footer />
               </>
             )}
