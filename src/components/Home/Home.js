@@ -9,7 +9,7 @@ const Home = () => {
     <main>
       <h2>Hello, can I be your rubberduck?</h2>
       <Link to='/form'>
-        <button>Yes</button>
+        <button className='yes-button'>Yes</button>
       </Link>
       <Duck />
     </main>

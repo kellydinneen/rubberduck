@@ -50,14 +50,14 @@ const Prescription = (props) => {
     {loading && <h3>Hmmmmmmmm....I'm thinking</h3>}
     {error && <h3>Oh no! Something went wrong. Return home and try again</h3>}
     {!loading && !error &&
-      <section>
+      <section className='prescription-card'>
         <h4>Well, I think what you need to try is</h4>
-        <h3>{prescription.title}</h3>
-        <h3>{prescription.content}</h3>
-        <Link to={prescription.resource}>
+        <h3 className='title'>{prescription.title}</h3>
+        <h3 className='content'>{prescription.content}</h3>
+        <Link className='resource-link' to={prescription.resource}>
           <button>Learn More</button>
         </Link>
-        <Link to='/form'>
+        <Link className='start-over' to='/form'>
           <button>Start Over</button>
         </Link>
       </section>
