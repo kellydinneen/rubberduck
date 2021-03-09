@@ -1,4 +1,4 @@
-export const determinePrescriptionType = (inputs) => {
+const determinePrescriptionType = (inputs) => {
   const user = categorizeUser(inputs);
   const problem = categorizeProblem(inputs);
   if (user.energy === 'very tired') {
@@ -52,11 +52,11 @@ const categorizeUser = (inputs) => {
 }
 
 const determineUserEnergy = (inputs) => {
-  if (input.issueHours > 10 || input.currentTime === '11' || input.breakTime === 'yesterday') {
+  if (inputs.issueHours > 10 || inputs.currentTime === '11' || inputs.breakTime === 'yesterday') {
     return 'very tired';
-  } else if (input.eatTime === 'hours' || 'yesterday') {
+  } else if (inputs.eatTime === 'hours' || 'yesterday') {
     return "hungry";
-  } else if (input.breakTime === 'hours' || input.currentTime === '9') {
+  } else if (inputs.breakTime === 'hours' || inputs.currentTime === '9') {
     return "stale";
   } else {
     return "rested";
@@ -71,12 +71,13 @@ const determineUserValence = (inputs) => {
 const determineSelfImage = (inputs) => {
   const positiveDescriptors = ['adventurous', 'meticulous', 'confident', 'imaginative', 'hard-working', 'brilliant', 'fast-learner', 'analytical', 'insightful', 'creative'];
   const negativeDescriptors = ['procrastinator', 'over-cautious', 'sloppy', 'self-concious', 'anxious', 'obsessive', 'lazy', 'boring', 'slow-learner'];
-  const negativeSelections = input.selfDescription.filter(trait => negativeDescriptors.includes(trait));
-  const positiveSelections = input.selfDescription.filter(trait => positiveDescriptors.includes(trait));
-  let selfImage;
+  const negativeSelections = inputs.selfDescription.filter(trait => negativeDescriptors.includes(trait));
+  const positiveSelections = inputs.selfDescription.filter(trait => positiveDescriptors.includes(trait));
   if (negativeSelections.length >= positiveSelections.length) {
     return 0;
   } else {
     return 1;
   }
 }
+
+export default determinePrescriptionType;

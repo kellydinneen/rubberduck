@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import determinePrescriptionType from './formResponseProcessing.css';
+import determinePrescriptionType from './formResponseProcessing';
 import './Form.css';
 
 const Form = (props) => {
@@ -20,8 +20,8 @@ const Form = (props) => {
   const [selfDescription, setSelfDescription] = useState('');
   const [feeling, setFeeling] = useState('');
 
-  useEffect(() => {
-    const inputs === {
+  const getPrescriptionType = () => {
+    const inputs = {
       problemType: problemType,
       techType: techType,
       issueAge: issueAge,
@@ -34,7 +34,7 @@ const Form = (props) => {
       feeling: feeling
     }
     setPrescriptionType(determinePrescriptionType(inputs));
-  }, [feeling])
+  }
 
   return (
     <form>
@@ -141,7 +141,7 @@ const Form = (props) => {
         </label>
         <label>
           Which of these best describe you, typically? (Select all that apply)
-          <select value={selfDescription} onChange={event => selfDescription(event.target.value)} multiple>
+          <select value={selfDescription} onChange={event => setSelfDescription(event.target.value)} multiple>
             <option value="procrastinator">procrastinator</option>
             <option value="perfectionist">perfectionist</option>
             <option value="adventurous">adventurous</option>
@@ -166,7 +166,10 @@ const Form = (props) => {
         </label>
         <label>
           How do you feel right now?
-          <select value={feeling} onChange={event => setFeeling(event.target.value)}>
+          <select value={feeling} onChange={event => {
+            setFeeling(event.target.value)
+            getPrescriptionType();
+          }}>
             <option value='0'>hopeless</option>
             <option value='1'>incredibly frustrated</option>
             <option value='2'>sort of frustrated</option>
@@ -175,13 +178,14 @@ const Form = (props) => {
           </select>
         </label>
       </>}
-      {currentQuestion > 1 && <button className='back-button' onClick={setCurrentQuestion(currentQuestion--)}>Back</button>}
-      {currentQuestion < 7 && <button className='forward-button' onClick={setCurrentQuestion(currentQuestion++)}>Next</button>}
+      {currentQuestion > 1 && <button type='button' className='back-button'
+      onClick={() => setCurrentQuestion(currentQuestion - 1)}>Back</button>}
+      {currentQuestion < 7 && <button type='button' className='forward-button' onClick={() => setCurrentQuestion(currentQuestion + 1)}>Next</button>}
       {currentQuestion === 7 && <Link to={{
         pathname:`/advice`,
         state: {prescriptionType}
       }}>
-        <button className='submit-button' onClick={setCurrentQuestion(1)}>Submit</button>
+        <button className='submit-button' type='button' onClick={() => setCurrentQuestion(1)}>Submit</button>
       </Link>}
     </form>
   )
