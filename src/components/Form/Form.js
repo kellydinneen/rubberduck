@@ -35,9 +35,33 @@ const Form = (props) => {
       selfDescription: selfDescription,
       feeling: feeling
     }
-    setPrescriptionType(determinePrescriptionType(inputs));
+    const type = determinePrescriptionType(inputs);
+    setPrescriptionType(type);
     console.log('TYPE', prescriptionType);
   }
+
+  const selfDescriptorOptions = [
+    { label: "procrastinator", value: "procrastinator" },
+    { label: "perfectionist", value: "perfectionist" },
+    { label: "adventurous", value: "adventurous"},
+    { label: "over-cautious", value: "over-cautious" },
+    { label: "sloppy", value: "sloppy" },
+    { label: "meticulous", value: "meticulous" },
+    { label: "self-concious", value: "self-concious" },
+    { label: "confident", value: "confident" },
+    { label: "anxious", value: "anxious" },
+    { label: "lazy", value: "lazy" },
+    { label: "obsessive", value: "obsessive" },
+    { label: "imaginative", value: "imaginative"},
+    { label: "hard-working", value: "hard-working" },
+    { label: "boring", value: "boring" },
+    { label: "brilliant", value: "brilliant" },
+    { label: "fast-learner", value: "fast-learner" },
+    { label: "slow-learner", value: "slow-learner" },
+    { label: "analytical", value: "analytical" },
+    { label: "insightful", value: "insightful" },
+    { label: "creative", value: "creative" }
+  ]
 
   return (
     <>
@@ -151,30 +175,13 @@ const Form = (props) => {
             </select>
           </label>
           <label>
-            Which of these best describe you, typically?
-            <select value={selfDescription} onChange={event => setSelfDescription(event.target.value)} multiple>
-              <option value="" disabled selected>Select all that apply</option>
-              <option value="procrastinator">procrastinator</option>
-              <option value="perfectionist">perfectionist</option>
-              <option value="adventurous">adventurous</option>
-              <option value="over-cautious">over-cautious</option>
-              <option value="sloppy">sloppy</option>
-              <option value="meticulous">meticulous</option>
-              <option value="self-concious">self-concious</option>
-              <option value="confident">confident</option>
-              <option value="anxious">anxious</option>
-              <option value="obsessive">obsessive</option>
-              <option value="lazy">lazy</option>
-              <option value="imaginative">imaginative</option>
-              <option value="hard-working">hard-working</option>
-              <option value="boring">boring</option>
-              <option value="brilliant">brilliant</option>
-              <option value="fast-learner">fast-learner</option>
-              <option value="slow-learner">slow-learner</option>
-              <option value="analytical">analytical</option>
-              <option value="insightful">insightful</option>
-              <option value="creative">creative</option>
-            </select>
+          How would you describe yourself?
+            <MultiSelect
+              options={selfDescriptorOptions}
+              value={selfDescription}
+              onChange={setSelfDescription}
+              labelledBy={"Select all that apply"}
+            />
           </label>
           <label>
             How do you feel right now?
