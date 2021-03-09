@@ -1,16 +1,11 @@
 const determinePrescriptionType = (inputs) => {
   const user = categorizeUser(inputs);
-  console.log('USER', user);
   const problem = categorizeProblem(inputs);
-  console.log('PROBLEM', problem);
   if (user.energy === 'very tired') {
-    console.log('ENERGY', user.energy);
     return 'rest'
   } else if (user.energy === 'hungry') {
-    console.log('ENERGY', user.energy);
     return 'nourishment'
   } else if (user.energy === "stale") {
-    console.log('ENERGY', user.energy);
     return 'movement';
   } else if ((problem === 'vague' && user.valence === 'down') || problem === 'impossible') {
     return 'affirmation';
@@ -59,7 +54,7 @@ const categorizeUser = (inputs) => {
 const determineUserEnergy = (inputs) => {
   if (inputs.issueHours > 10 || inputs.currentTime === '11' || inputs.breakTime === 'yesterday') {
     return 'very tired';
-  } else if (inputs.eatTime === 'hours' || 'yesterday') {
+  } else if (inputs.eatTime === 'yesterday') {
     return "hungry";
   } else if (inputs.breakTime === 'hours' || inputs.currentTime === '9') {
     return "stale";
