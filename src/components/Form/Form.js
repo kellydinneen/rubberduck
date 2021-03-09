@@ -7,6 +7,7 @@ import './Form.css';
 
 const Form = (props) => {
   const [currentQuestion, setCurrentQuestion] = useState(1);
+  const [userInputs, setUserInputs] = useState({});
   const [prescriptionType, setPrescriptionType] = useState('');
   const [name, setName] = useState('');
   const [problemType, setProblemType] = useState('');
@@ -22,22 +23,10 @@ const Form = (props) => {
   const [selfDescription, setSelfDescription] = useState([]);
   const [feeling, setFeeling] = useState('');
 
-  const getPrescriptionType = () => {
-    const inputs = {
-      problemType: problemType,
-      techType: techType,
-      issueAge: issueAge,
-      issueHours: issueHours,
-      progressTime: progressTime,
-      currentTime: currentTime,
-      breakTime: breakTime,
-      eatTime: eatTime,
-      selfDescription: selfDescription,
-      feeling: feeling
-    }
-    const type = determinePrescriptionType(inputs);
+  const getPrescriptionType = async () => {
+    const type = await determinePrescriptionType(userInputs);
     setPrescriptionType(type);
-    console.log('TYPE', prescriptionType);
+    console.log('TYPE', prescriptionType)
   }
 
   const selfDescriptorOptions = [
@@ -187,7 +176,20 @@ const Form = (props) => {
             How do you feel right now?
             <select value={feeling} onChange={event => {
               setFeeling(event.target.value)
-              getPrescriptionType();
+              setUserInputs(
+                {
+                  problemType: problemType,
+                  techType: techType,
+                  issueAge: issueAge,
+                  issueHours: issueHours,
+                  progressTime: progressTime,
+                  currentTime: currentTime,
+                  breakTime: breakTime,
+                  eatTime: eatTime,
+                  selfDescription: selfDescription,
+                  feeling: feeling
+                }
+              );
             }}>
               <option value="" disabled selected>Select the closest match</option>
               <option value='0'>hopeless</option>
@@ -201,11 +203,26 @@ const Form = (props) => {
         {currentQuestion > 1 && <button type='button' className='back-button'
         onClick={() => setCurrentQuestion(currentQuestion - 1)}>Back</button>}
         {currentQuestion < 7 && <button type='button' className='forward-button' onClick={() => setCurrentQuestion(currentQuestion + 1)}>Next</button>}
-        {currentQuestion === 7 && <Link to={{
+        {currentQuestion === 7 &&
+          <button onClick={() => {
+            setCurrentQuestion(8);
+            getPrescriptionType();
+          }} className='submit-button' type='button'>What's Next?!</button>
+        }
+        {currentQuestion === 8 &&
+          <>
+          <h3>You're done!</h3>
+          <Link onClick={() => {
+            setCurrentQuestion(1);
+            getPrescriptionType();
+          }}
+          to={{
             pathname:`/advice/${prescriptionType}`
           }}>
-          <button className='submit-button' type='button' onClick={() => setCurrentQuestion(1)}>Submit</button>
-        </Link>}
+          <button className='submit-button' type='button'>Submit</button>
+        </Link>
+        </>
+      }
       </form>
     </>
   )

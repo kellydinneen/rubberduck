@@ -4,10 +4,13 @@ const determinePrescriptionType = (inputs) => {
   const problem = categorizeProblem(inputs);
   console.log('PROBLEM', problem);
   if (user.energy === 'very tired') {
+    console.log('ENERGY', user.energy);
     return 'rest'
   } else if (user.energy === 'hungry') {
+    console.log('ENERGY', user.energy);
     return 'nourishment'
   } else if (user.energy === "stale") {
+    console.log('ENERGY', user.energy);
     return 'movement';
   } else if ((problem === 'vague' && user.valence === 'down') || problem === 'impossible') {
     return 'affirmation';
