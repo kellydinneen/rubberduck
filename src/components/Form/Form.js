@@ -68,7 +68,7 @@ const Form = (props) => {
         </label>}
         {currentQuestion === 2 && <label>
         How would you describe the trouble you're having {name}, duck-friend?
-          <select value={problemType} onChange={event => setProblemType(event.target.value)}>
+          <select className='problem-type-select' value={problemType} onChange={event => setProblemType(event.target.value)}>
             <option value="" disabled selected>Select a category</option>
             <option value="big bad bug">it's a big bad bug 🐛</option>
             <option value="don't know how to start">I just don't know how to start</option>
@@ -78,7 +78,7 @@ const Form = (props) => {
         </label>}
         {currentQuestion === 3 && <label>
         Which of these categories is your problem related to?
-          <select value={techType} onChange={event => setTechType(event.target.value)}>
+          <select className='tech-type-select' value={techType} onChange={event => setTechType(event.target.value)}>
             <option value="" disabled selected>Select a category</option>
             <option value="styling">making things look pretty (css/scss stuff)</option>
             <option value="client-side">client side architecture</option>
@@ -104,6 +104,7 @@ const Form = (props) => {
             <input
               aria-label="issue age input"
               placeholder="number of days"
+              className="days-input"
               value={issueAge}
               onChange={event => setIssueAge(event.target.value)}>
             </input>
@@ -113,13 +114,14 @@ const Form = (props) => {
             <input
               aria-label="issue work today input"
               placeholder="number of hours"
+              className="hours-input"
               value={issueHours}
               onChange={event => setIssueHours(event.target.value)}>
             </input>
           </label>
           <label>
             How long has it been since you saw any progress?
-            <select value={progressTime} onChange={event => setProgressTime(event.target.value)}>
+            <select className="progress-time-input" value={progressTime} onChange={event => setProgressTime(event.target.value)}>
               <option value="" disabled selected>Select time window</option>
               <option value="minutes">an hour or less</option>
               <option value="hours">several hours</option>
@@ -133,7 +135,7 @@ const Form = (props) => {
           <h3>Ok, let's get you some progress. Just a few more questions for context.</h3>
           <label>
             About what time is it where you are?
-            <select value={currentTime} onChange={event => setCurrentTime(event.target.value)}>
+            <select className="current-time-input" value={currentTime} onChange={event => setCurrentTime(event.target.value)}>
               <option value="" disabled selected>Select the closest match</option>
               <option value="early">early morning</option>
               <option value="morning">mid-morning</option>
@@ -147,7 +149,7 @@ const Form = (props) => {
           </label>
           <label>
             When was the last time you took a break longer than 5 minutes?
-            <select value={breakTime} onChange={event => setBreakTime(event.target.value)}>
+            <select className="break-input" value={breakTime} onChange={event => setBreakTime(event.target.value)}>
               <option value="" disabled selected>Select the closest match</option>
               <option value="minutes">an hour or less</option>
               <option value="hours">several hours</option>
@@ -156,7 +158,7 @@ const Form = (props) => {
           </label>
           <label>
             When was the last time you ate?
-            <select value={eatTime} onChange={event => setEatTime(event.target.value)}>
+            <select className="eat-input" value={eatTime} onChange={event => setEatTime(event.target.value)}>
               <option value="" disabled selected>Select the closest match</option>
               <option value="minutes">an hour or less</option>
               <option value="hours">several hours</option>
@@ -170,11 +172,12 @@ const Form = (props) => {
               value={selfDescription}
               onChange={setSelfDescription}
               labelledBy={"Select all that apply"}
+              className="multi"
             />
           </label>
           <label>
             How do you feel right now?
-            <select value={feeling} onChange={event => {
+            <select className="feeling-input" value={feeling} onChange={event => {
               setFeeling(event.target.value)
               setUserInputs(
                 {
@@ -207,7 +210,7 @@ const Form = (props) => {
           <button onClick={() => {
             setCurrentQuestion(8);
             getPrescriptionType();
-          }} className='submit-button' type='button'>What's Next?!</button>
+          }} className='penult-button' type='button'>What's Next?!</button>
         }
         {currentQuestion === 8 &&
           <>
