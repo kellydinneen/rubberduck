@@ -26,10 +26,10 @@ const Prescription = (props) => {
   useEffect(() => {
     let endpoint;
     let source;
-    if (props.type === 'rest' || 'nourishment' || 'movement') {
+    if (props.type === 'rest' || props.type === 'nourishment' || props.type === 'movement') {
       endpoint = `https://unstuck-rubberduck-api.herokuapp.com/api/v1/rr/${props.type}`
       source = 'unstuck'
-    } else if (props.type === 'oblique' || 'science' || 'ideation') {
+    } else if (props.type === 'oblique' || props.type === 'science' || props.type === 'ideation') {
       endpoint = `https://unstuck-rubberduck-api.herokuapp.com/api/v1/thinking/${props.type}`
       source = 'unstuck'
     } else if(props.type === 'affirmation') {
