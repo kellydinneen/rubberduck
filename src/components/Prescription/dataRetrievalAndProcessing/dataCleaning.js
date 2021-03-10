@@ -4,7 +4,7 @@ const cleanData = (data, source) => {
   } else if (source === 'affirmations') {
     return approveAffirmationContent(data);
   } else if (source === 'advice') {
-
+    return approveAdviceContent(data);
   }
 }
 

@@ -5,6 +5,8 @@ import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
 
+const cors = require('cors');
+
 const router = <BrowserRouter> <App /> </BrowserRouter>;
 
 ReactDOM.render(router, document.getElementById('root'));
