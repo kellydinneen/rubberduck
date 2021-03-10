@@ -12,7 +12,9 @@
 
 ### Technologies
 **Build**: React, React Router, Express.js (for [unstuck API](https://github.com/kellydinneen/unstuck-api))
+
 **Testing**: Cypress
+
 **Deployment**: Heroku
 
 ## Table of Contents
@@ -66,7 +68,7 @@ The app is very simple! If a user is feeling stuck, they can click "yes" on the 
 At any time, they can click "Go Home" at the top of the page to return home.
 
 ### Filling out the form
-The duck asks users number of questions about the problem you are facing, your workload/energy level, and your emotional state. It also provides space for users to vent about and re-articulate their problem in the hopes of encouraging them to clarify their thoughts. Fill out every item in the form (clicking *next* after each question or set of questions). Then, click submit. If any necessary questions are not answered, the user is asked to go back and finish.
+The duck asks users number of questions about the problem they are facing, their workload/energy level, and their emotional state. It also provides space for users to vent about and re-articulate their problem in the hopes of encouraging them to clarify their thoughts. Fill out every item in the form (clicking *next* after each question or set of questions). Then, click submit. If any necessary questions are not answered, the user is asked to go back and finish.
 
 ### Viewing the Prescription
 Upon clicking submit, a user will be shown a recommendation from the duck, consisting of a title, a description, and a resource link.
@@ -87,6 +89,7 @@ The time crunch on this project was the greatest challenge, especially in combin
 Because of the logic involved in intepreting the form, this project turned out to be an unexpected exercise in vanilla javascript. I also came away from the proejct with many ideas for future iterations, and an appreciation for iteration in general: for beginning a project by producing a bare minimum MVP. Finally, I am proud to have used 3 APIs (one custom built) in a project with such a short timeline.
 
 ### Plans for Future Iterations
+- **Complete Postgressql database to store more robust collection of problem solving strategies:** There was not time in the timeframe of this first iteration to connect a Postgressql database, but the next step is making that link and continuing to build up the database with an assortment of problem solving strategies and resources.
 - **Richer relationships between user inputs and advice selection:** There is potential to get much more specific about the duck's recommendations, both by tagging data in the unstuck API more robustly, and by fetching some solution objects specifically rather than randomly selecting from a filtered array.
 - **User Authentication and "Visit" History Functionality:** The rubberduck could be used not only to recommend solutions, but to keep track of past struggles and solution attempts. By implementing a user login, the rubberduck could store users' past visits so that a user coul view how they'd described/dealt with  problems in the past.
 - **Enhanced Interactivity with Duck:** Eventually, the duck should be made into a more vivid character on the site, with animations and increased, personalized dialogue with the user.
