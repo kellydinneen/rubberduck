@@ -74,7 +74,7 @@ The duck asks users number of questions about the problem they are facing, their
 Upon clicking submit, a user will be shown a recommendation from the duck, consisting of a title, a description, and a resource link.
 
 ### Submitting Problem Solving Strategies
-Users can also submit their own strategies or review by clicking the "Submit A Strategy" button in the header. They are asked to enter a title, a description, and a link before clicking submit.
+Users can also submit their own strategies by clicking the "Submit A Strategy" button in the header. They are asked to enter a title, a description, and a link before clicking submit. At the moment, these submissions are not immediately integrated into the duck's advice repetoire because the process for labeling advice items is still quite clumsy and cannot be relied upon to automatically accept and categorize user submissions. In future iterations, there will be a direct pipeline between submitted strategies and what the duck recommends.
 
 [Back to Top of Page](#table-of-contents)
 
@@ -92,6 +92,7 @@ Because of the logic involved in intepreting the form, this project turned out t
 - **Complete Postgressql database to store more robust collection of problem solving strategies:** There was not time in the timeframe of this first iteration to connect a Postgressql database, but the next step is making that link and continuing to build up the database with an assortment of problem solving strategies and resources.
 - **Richer relationships between user inputs and advice selection:** There is potential to get much more specific about the duck's recommendations, both by tagging data in the unstuck API more robustly, and by fetching some solution objects specifically rather than randomly selecting from a filtered array.
 - **User Authentication and "Visit" History Functionality:** The rubberduck could be used not only to recommend solutions, but to keep track of past struggles and solution attempts. By implementing a user login, the rubberduck could store users' past visits so that a user coul view how they'd described/dealt with  problems in the past.
+- **Collection of user feedback:** The rubberduck's recommendations could quickly improve it the app were to moniter user reactions about the advice they recieve relative to their survey answers. This could be an opportunity to apply some novice python skills to a machine learning model.
 - **Enhanced Interactivity with Duck:** Eventually, the duck should be made into a more vivid character on the site, with animations and increased, personalized dialogue with the user.
 
 [Back to Top of Page](#table-of-contents)
