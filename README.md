@@ -36,11 +36,6 @@ To run the project locally:
 - run `npm install`
 - You're good to go!
 
-OR
-
-We have deployed the App using Heroku. To visit, click the link below!
-- [Rubberduck](https://rubberduck-m3.herokuapp.com/)
-
 *note: the unstuck API is deployed on Heroku, so there is no need to clone it down
 
 
