@@ -2,6 +2,8 @@
 ## A playful tool for software developers feeling stuck
 #### Turing School of Software Design - Mod3 Niche Audience Project
 
+# [SEE CURRENT VERSION: Refactored into TypeScript](https://github.com/kellydinneen/rubberduck-refactored)
+
 ### Contributors
 **Kelly Dinneen** : [github profile](https://github.com/kellydinneen)
 
